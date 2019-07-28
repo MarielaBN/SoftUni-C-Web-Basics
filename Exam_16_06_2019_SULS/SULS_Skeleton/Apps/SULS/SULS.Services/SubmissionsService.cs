@@ -60,10 +60,20 @@ namespace SULS.Services
             return allSubmissions;
         }
 
-        //public void Delete(string submissionId)
-        //{
-        //    var submissionToDelete = this.db.Submissions.Where(x => x.Id == submissionId).FirstOrDefault();
-            
-        //}
+        public bool Delete(string submissionId)
+        {
+            //var submissiontodelete = this.db.submissions.where(x => x.id == submissionid).firstordefault();
+
+            var submissionToDelete = this.db.Submissions.Find(submissionId);
+            if (submissionToDelete == null)
+            {
+                return false;
+            }
+
+            this.db.Submissions.Remove(submissionToDelete);
+            this.db.SaveChanges();
+
+            return true;
+        }
     }
 }

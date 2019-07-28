@@ -49,11 +49,18 @@ namespace SULS.App.Controllers
             return this.Redirect("/");
         }
 
-        //[Authorize]
-        //public IActionResult Delete(string id)
-        //{
-        //    this.packagesService.Deliver(id);
-        //    return this.Redirect("/Packages/Delivered");
-        //}
+        [Authorize]
+        public IActionResult Delete(string id)
+        {
+            bool isDeleted = this.submissionsService.Delete(id);
+
+            if (!isDeleted)
+            {
+                throw new Exception("Submission was not deleted");
+               // return this.Redirect("/");
+            }
+
+            return this.Redirect("/");
+        }
     }
 }

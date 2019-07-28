@@ -14,6 +14,6 @@ namespace SULS.Services
 
         IQueryable<Submission> GetAllSubmissions(string userId, string problemId);
 
-       // void Delete(string submissionId);
+       bool Delete(string submissionId);
     }
 }
